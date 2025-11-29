@@ -1,5 +1,6 @@
-package com.mendezyahir.product_inventory.dto;
+package com.mendezyahir.product_inventory.dto.productDto;
 
+import com.mendezyahir.product_inventory.dto.productBrandDto.ProductBrandResponseDto;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 

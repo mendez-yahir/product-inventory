@@ -1,4 +1,4 @@
-package com.mendezyahir.product_inventory.dto;
+package com.mendezyahir.product_inventory.dto.productBrandDto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
