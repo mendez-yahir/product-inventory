@@ -28,6 +28,6 @@ public class ProductCategory {
     @Column(nullable = false, columnDefinition = "TEXT" )
     private String description;
 
-    @Column
+    @Column(length = 2000)
     private String sizeGuideUrl;
 }
