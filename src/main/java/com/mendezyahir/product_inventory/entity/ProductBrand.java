@@ -28,6 +28,6 @@ public class ProductBrand {
     @Column(nullable = false, columnDefinition = "TEXT")   //512 dto
     private String description;
 
-    @Column
+    @Column(length = 2000)
     private String logoUrl;
 }
