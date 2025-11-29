@@ -2,8 +2,16 @@ package com.mendezyahir.product_inventory.dto.productCategoryDto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class ProductCategoryRequestDto {
     @NotBlank(message = "The product category name is required.")
     @Size(min = 3, max = 100, message = "The product category name must be between 3 and 100 characters.")
