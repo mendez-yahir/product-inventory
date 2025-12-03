@@ -35,14 +35,14 @@ public class ProductImageVariant {
     @JoinColumn(name = "product_image_id")
     private ProductImage productImage;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String url;
 
     @Column
     private int width;
 
     @Column
-    private int weight;
+    private int height;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 5)

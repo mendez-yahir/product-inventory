@@ -28,6 +28,6 @@ public class ProductImage {
     @Column(nullable = false)
     private boolean isPrimary;
 
-    @Column
+    @Column(nullable = false)
     private String thumbnailUrl;
 }

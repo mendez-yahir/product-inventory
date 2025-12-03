@@ -32,17 +32,13 @@ public class ProductVariant {
     private BigDecimal price;
 
     @Column(nullable = false)
-    private BigDecimal discountPrice;
-
-    @Column(nullable = false)
     private BigDecimal weightKg;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2000)
     private String productColorUrl;
 
     @Column(nullable = false)
-    private Integer stock;
-
+    private int stock;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

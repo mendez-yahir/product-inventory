@@ -1,9 +1,8 @@
 package com.mendezyahir.product_inventory.dto.productDto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
+import java.math.BigDecimal;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,4 +28,10 @@ public class ProductRequestDto {
     @NotEmpty(message = "At least one category ID is required.")
     @Size(max = 5, message = "A product cannot have  more than 5 categories.")
     private Set<Long> productCategoryIds;
+
+    @NotNull(message = "The discountPercentage is required.")
+    @DecimalMin(value = "0.00", message = "The discountPercentage must be at least 0.")
+    @DecimalMax(value = "100.00", message = "The discountPercentage must not exceed 100.")
+    @Digits(integer = 3, fraction = 2, message = "The discountPercentage must have up to 3 digits and 2 decimal places.")
+    private BigDecimal discountPercentage;
 }

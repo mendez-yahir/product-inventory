@@ -13,6 +13,7 @@ import jakarta.persistence.JoinTable;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,6 +31,9 @@ public class Product {
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
+
+    @Column(nullable = false)
+    private BigDecimal discountPercentage;
 
     @ManyToOne
     @JoinColumn(name = "product_brand_id")
