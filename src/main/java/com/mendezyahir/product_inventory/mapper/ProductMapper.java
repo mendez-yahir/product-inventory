@@ -16,11 +16,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "productBrand", ignore = true)
+    @Mapping(target = "productCategories", ignore = true)
     Product toEntity(ProductRequestDto requestDto);
 
-    @Mapping(source = "productBrand.id",target = "productBrandId")
-    @Mapping(source = "productCategories", target = "productCategoryIds")
+
+    @Mapping(source = "productCategories", target = "productCategories")
     ProductResponseDto toResponse(Product product);
+
     List<ProductResponseDto> toListResponse(Page<Product> products); //page to List
 
     default Page<ProductResponseDto> toPageResponse(Page<Product> products){ //page to List DTOs

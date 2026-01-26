@@ -12,8 +12,17 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.DecimalMax;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductVariantRequestDto {
     @NotBlank(message = "The sku is required.")
     @Size(min = 3, max = 64, message = "The sku must be between 3 and 64 characters.")
@@ -38,7 +47,7 @@ public class ProductVariantRequestDto {
 
     @NotNull(message = "The stock is required.")
     @PositiveOrZero(message = "The stock must be zero or positive value.")
-    private int stock;
+    private Integer stock;
 
     @NotNull(message = "The productId is required.")
     @Min(value = 1, message = "The productId must be greater than or equal to 1.")

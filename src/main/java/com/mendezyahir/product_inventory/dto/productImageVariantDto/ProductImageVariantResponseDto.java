@@ -1,5 +1,6 @@
 package com.mendezyahir.product_inventory.dto.productImageVariantDto;
 
+import com.mendezyahir.product_inventory.entity.ProductImageVariant;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 
@@ -11,5 +12,5 @@ public class ProductImageVariantResponseDto {
     private String url;
     private int width;
     private int height;
-    private String resolution;
+    private ProductImageVariant.ResolutionType resolution;
 }

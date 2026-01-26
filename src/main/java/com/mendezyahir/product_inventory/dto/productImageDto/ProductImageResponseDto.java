@@ -8,6 +8,6 @@ import lombok.AllArgsConstructor;
 public class ProductImageResponseDto {
     private Long id;
     private String altText;
-    private String isPrimary;
+    private Boolean isPrimary;
     private String thumbnailUrl;
 }

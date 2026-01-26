@@ -1,30 +1,31 @@
 package com.mendezyahir.product_inventory.controller;
 
-import com.mendezyahir.product_inventory.dto.productVariantDto.ProductVariantRequestDto;
-import com.mendezyahir.product_inventory.dto.productVariantDto.ProductVariantResponseDto;
-import com.mendezyahir.product_inventory.service.ProductVariantService;
+import com.mendezyahir.product_inventory.dto.productSizeDto.ProductSizeRequestDto;
+import com.mendezyahir.product_inventory.dto.productSizeDto.ProductSizeResponseDto;
+import com.mendezyahir.product_inventory.service.ProductSizeService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.*;
-import lombok.RequiredArgsConstructor;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import java.util.Map;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.HashMap;
+import java.util.Map;
 
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/productVariants")
-public class ProductVariantController {
-    private final ProductVariantService productVariantService;
+@RequestMapping("/api/v1/productSizes")
+public class ProductSizeController {
+    private final ProductSizeService productSizeService;
 
     @PostMapping
-    public ResponseEntity<?> createProductVariant(@Valid @RequestBody ProductVariantRequestDto productVariantRequestDto){
+    public ResponseEntity<?> createProductSize(@Valid @RequestBody ProductSizeRequestDto productSizeRequestDto){
         try{
-            ProductVariantResponseDto productVariantResponseDto = this.productVariantService.createProductVariant(productVariantRequestDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(productVariantResponseDto);
+            ProductSizeResponseDto productSizeResponseDto = this.productSizeService.createProductSize(productSizeRequestDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(productSizeResponseDto);
         }catch(EntityNotFoundException e){
             Map<String, Object> messageError = new HashMap<>();
             messageError.put("error",HttpStatus.NOT_FOUND);
@@ -44,10 +45,10 @@ public class ProductVariantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductVariantById(@PathVariable Long id){
+    public ResponseEntity<?> getProductSizeById(@PathVariable Long id){
         try{
-            ProductVariantResponseDto productVariantResponseDto = this.productVariantService.getProductVariantById(id);
-            return ResponseEntity.status(HttpStatus.OK).body(productVariantResponseDto);
+            ProductSizeResponseDto productSizeResponseDto = this.productSizeService.getProductSizeById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(productSizeResponseDto);
         }catch(EntityNotFoundException e){
             Map<String, Object> messageError = new HashMap<>();
             messageError.put("error",HttpStatus.NOT_FOUND);
@@ -62,13 +63,13 @@ public class ProductVariantController {
     }
 
     @GetMapping
-    public ResponseEntity<?> listProductVariants(
+    public ResponseEntity<?> listProductSizes(
             @RequestParam int page,
             @RequestParam int size
     ){
         try{
-            Page<ProductVariantResponseDto> pageProductVariantResponseDto = this.productVariantService.listProductVariants(page,size);
-            return ResponseEntity.status(HttpStatus.OK).body(pageProductVariantResponseDto);
+            Page<ProductSizeResponseDto> pageProductSizeResponseDto = this.productSizeService.listProductSizes(page,size);
+            return ResponseEntity.status(HttpStatus.OK).body(pageProductSizeResponseDto);
         }catch(Exception e){
             Map<String, String> messageError = new HashMap<>();
             messageError.put("error",String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()));
@@ -78,13 +79,13 @@ public class ProductVariantController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProductVariant(
+    public ResponseEntity<?> updateProductSize(
             @PathVariable Long id,
-            @Valid @RequestBody ProductVariantRequestDto productVariantRequestDto
+            @Valid @RequestBody ProductSizeRequestDto productSizeRequestDto
     ){
         try{
-            ProductVariantResponseDto productVariantResponseDto = this.productVariantService.updateProductVariant(id,productVariantRequestDto);
-            return ResponseEntity.status(HttpStatus.OK).body(productVariantResponseDto);
+            ProductSizeResponseDto productSizeResponseDto = this.productSizeService.updateProductSize(id,productSizeRequestDto);
+            return ResponseEntity.status(HttpStatus.OK).body(productSizeResponseDto);
         }catch(EntityNotFoundException e){
             Map<String, Object> messageError = new HashMap<>();
             messageError.put("error",HttpStatus.NOT_FOUND);
@@ -99,9 +100,9 @@ public class ProductVariantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProductVariant(@PathVariable Long id){
+    public ResponseEntity<?> deleteProductSize(@PathVariable Long id){
         try{
-            this.productVariantService.deleteProductVariant(id);
+            this.productSizeService.deleteProductSize(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }catch(EntityNotFoundException e){
             Map<String, Object> messageError = new HashMap<>();

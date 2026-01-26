@@ -26,7 +26,7 @@ public class ProductImage {
     private String altText;
 
     @Column(nullable = false)
-    private boolean isPrimary;
+    private Boolean isPrimary;
 
     @Column(nullable = false)
     private String thumbnailUrl;

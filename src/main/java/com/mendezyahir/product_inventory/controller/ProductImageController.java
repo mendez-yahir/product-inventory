@@ -1,8 +1,8 @@
 package com.mendezyahir.product_inventory.controller;
 
-import com.mendezyahir.product_inventory.dto.productCategoryDto.ProductCategoryRequestDto;
-import com.mendezyahir.product_inventory.dto.productCategoryDto.ProductCategoryResponseDto;
-import com.mendezyahir.product_inventory.service.ProductCategoryService;
+import com.mendezyahir.product_inventory.dto.productImageDto.ProductImageRequestDto;
+import com.mendezyahir.product_inventory.dto.productImageDto.ProductImageResponseDto;
+import com.mendezyahir.product_inventory.service.ProductImageService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +17,15 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/productCategories")
-public class ProductCategoryController {
-    private final ProductCategoryService productCategoryService;
+@RequestMapping("/api/v1/productImages")
+public class ProductImageController {
+    private final ProductImageService productImageService;
 
     @PostMapping
-    public ResponseEntity<?> createProductCategory(@Valid @RequestBody ProductCategoryRequestDto productCategoryRequestDto){
+    public ResponseEntity<?> createProductImage(@Valid @RequestBody ProductImageRequestDto productImageRequestDto){
         try{
-            ProductCategoryResponseDto productCategoryResponseDto = this.productCategoryService.createProductCategory(productCategoryRequestDto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(productCategoryResponseDto);
+            ProductImageResponseDto productImageResponseDto = this.productImageService.createProductImage(productImageRequestDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(productImageResponseDto);
         }catch(IllegalStateException e){
             Map<String, Object> messageError = new HashMap<>();
             messageError.put("message",e.getMessage());
@@ -34,19 +34,19 @@ public class ProductCategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductCategoryResponseDto>> getAllProductCategories(
+    public ResponseEntity<Page<ProductImageResponseDto>> getAllProductImages(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ){
-        Page<ProductCategoryResponseDto> productResponseDTOs = this.productCategoryService.getAllProductCategories(page, size);
+        Page<ProductImageResponseDto> productResponseDTOs = this.productImageService.getAllProductImages(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDTOs);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getProductCategory(@PathVariable Long id){
+    public ResponseEntity<?> getProductImage(@PathVariable Long id){
         try{
-            ProductCategoryResponseDto productCategory = this.productCategoryService.getProductCategory(id);
-            return ResponseEntity.status(HttpStatus.OK).body(productCategory);
+            ProductImageResponseDto productImage = this.productImageService.getProductImage(id);
+            return ResponseEntity.status(HttpStatus.OK).body(productImage);
         }catch(EntityNotFoundException e){
             Map<String, Object> messageError = new HashMap<>();
             messageError.put("message",e.getMessage());
@@ -55,10 +55,10 @@ public class ProductCategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateProductCategory(@PathVariable Long id, @Valid @RequestBody ProductCategoryRequestDto productCategoryRequestDto){
+    public ResponseEntity<?> updateProductImage(@PathVariable Long id, @Valid @RequestBody ProductImageRequestDto productImageRequestDto){
         try{
-            ProductCategoryResponseDto productCategory = this.productCategoryService.updateProductCategory(id, productCategoryRequestDto);
-            return ResponseEntity.status(HttpStatus.OK).body(productCategory);
+            ProductImageResponseDto productImage = this.productImageService.updateProductImage(id, productImageRequestDto);
+            return ResponseEntity.status(HttpStatus.OK).body(productImage);
         }catch(EntityNotFoundException e){
             Map<String,Object> messageError = new HashMap<>();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messageError);
@@ -66,9 +66,9 @@ public class ProductCategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
+    public ResponseEntity<?> deleteProductImage(@PathVariable Long id){
         try{
-            this.productCategoryService.deleteProductCategory(id);
+            this.productImageService.deleteProductImage(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }catch(EntityNotFoundException e){
             Map<String,Object> messageError = new HashMap<>();
@@ -76,6 +76,4 @@ public class ProductCategoryController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(messageError);
         }
     }
-
-
 }

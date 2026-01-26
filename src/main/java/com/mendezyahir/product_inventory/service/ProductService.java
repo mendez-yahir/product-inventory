@@ -25,7 +25,6 @@ public class ProductService {
     private final ProductMapper productMapper;
     private final ProductBrandService productBrandService;
     private final ProductCategoryService productCategoryService;
-
     public ProductResponseDto createProduct(ProductRequestDto productRequestDto){
 
         Product product =  this.productMapper.toEntity(productRequestDto);
@@ -78,10 +77,10 @@ public class ProductService {
     //
     public void attachRelationsToProduct(Product product, ProductRequestDto productRequestDto){
         //--
-        // relation with product brand
+        //
         ProductBrand productBrand = this.productBrandService.getProductBrandEntity(productRequestDto.getProductBrandId());
         product.setProductBrand(productBrand);
-        // relation with product category
+        //
         Set<ProductCategory> productCategories= new HashSet<>();
         for(Long id : productRequestDto.getProductCategoryIds()){
             ProductCategory productCategory = this.productCategoryService.getProductCategoryEntity(id);
@@ -89,5 +88,10 @@ public class ProductService {
         }
         product.setProductCategories(productCategories);
         //--
+    }
+
+    public Product getProductEntity(Long id){
+        return this.productRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Product with id '"+id+"' not found."));
     }
 }

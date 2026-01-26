@@ -1,11 +1,6 @@
 package com.mendezyahir.product_inventory.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +11,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "product_sizes")
+@Table(
+        name = "product_sizes",
+        uniqueConstraints = @UniqueConstraint(
+            columnNames = {"label","region","numericEquivalent"}
+    )
+)
+
 public class ProductSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

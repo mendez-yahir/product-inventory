@@ -1,5 +1,6 @@
 package com.mendezyahir.product_inventory.dto.productImageVariantDto;
 
+import com.mendezyahir.product_inventory.entity.ProductImageVariant;
 import org.hibernate.validator.constraints.URL;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotBlank;
@@ -33,7 +34,6 @@ public class ProductImageVariantRequestDto {
     @Max(value = 2048, message = "The height must be less than or equal to 2048.")
     private int height;
 
-    @NotBlank(message = "The resolution is required.")
-    @Size(min = 1, max = 5, message = "The resolution must be between 1 and 5 characters." )
-    private String resolution;
+    @NotNull(message = "The resolution is required.")
+    private ProductImageVariant.ResolutionType resolution;
 }

@@ -1,5 +1,6 @@
 package com.mendezyahir.product_inventory.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
@@ -24,7 +25,13 @@ import lombok.AllArgsConstructor;
 public class ProductImageVariant {
 
     public enum ResolutionType{
-        XS, SM, MD, LG, XL,XXL
+        XS, SM, MD, LG, XL,XXL;
+
+        @JsonCreator
+        public static ResolutionType from(String value){
+            return ResolutionType.valueOf(value.trim().toUpperCase());
+        }
+
     }
 
     @Id

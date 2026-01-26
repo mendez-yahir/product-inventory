@@ -1,6 +1,10 @@
 package com.mendezyahir.product_inventory.dto.productVariantDto;
 
 import java.math.BigDecimal;
+
+import com.mendezyahir.product_inventory.entity.BaseColor;
+import com.mendezyahir.product_inventory.entity.Product;
+import com.mendezyahir.product_inventory.entity.ProductSize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,8 +17,9 @@ public class ProductVariantResponseDto {
     private BigDecimal weightKg;
     private String productColorUrl;
     private int stock;
-    private Long productId;
-    private Long baseColorId;
-    private Long productSizeId;
+
+    private Product product;
+    private BaseColor baseColor;
+    private ProductSize productSize;
 }
 
